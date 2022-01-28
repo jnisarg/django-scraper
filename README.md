@@ -1,2 +1,2 @@
 # django-scraper
-Automated news-scraper built using Django, Postgres, Selenium, Celery, and Redis.
+Automated news-scraper built using django, postgresql, selenium, celery, and redis.
