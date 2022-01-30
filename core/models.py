@@ -5,7 +5,8 @@ from django.db.models import Q
 class NewsItemQuerySet(models.QuerySet):
     def search(self, query):
         return self.filter(Q(title__icontains=query) |
-                           Q(author__icontains=query))
+                           Q(author__icontains=query) |
+                           Q(source__icontains=query))
 
     # def source(self, source):
     #     if source in self.model.SourceChoices:

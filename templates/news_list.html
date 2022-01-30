@@ -18,7 +18,7 @@
         
         <form method="GET">
             <div class="input-group input-group-sm mb-3">
-                <input name="q" type="text" class="form-control" value="{{ request.GET.q }}" placeholder="Search article, author" aria-label="Search article, author" aria-describedby="button-addon2">
+                <input name="q" type="text" class="form-control" value="{{ request.GET.q }}" placeholder="Search article, author, source" aria-label="Search article, author, source" aria-describedby="button-addon2">
                 {% comment %} <select name="source" class="form-select" id="inputGroupSelect" aria-label="Source">
                     <option selected>All Sources</option>
                     {% for key, value in sources %}

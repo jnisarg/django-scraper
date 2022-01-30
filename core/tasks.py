@@ -9,7 +9,7 @@ def scrape_dev_to_task(self):
     return "Done"
 
 
-@shared_task(bind=True)
-def scrape_hacker_news_task(self, crawl_delay=30):
+@shared_task
+def scrape_hacker_news_task(crawl_delay=30):
     scrape_hn(crawl_delay=crawl_delay)
     return "Done"

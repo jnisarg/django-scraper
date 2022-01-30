@@ -53,6 +53,7 @@ def scrape_dev_to(url):
         driver.quit()
 
     try:
+        print("Started scraping...")
         load_infinite_scroll(driver)
         articles = driver.find_elements(By.CSS_SELECTOR, ".crayons-story")
         for article in articles:
@@ -88,6 +89,7 @@ def scrape_dev_to(url):
 def scrape_hn(crawl_delay=30):
     page = 1
     scrape_count = 0
+    print("Started scraping...")
     while True:
         try:
             url = f"https://news.ycombinator.com/news?p={page}"
@@ -133,7 +135,7 @@ def scrape_hn(crawl_delay=30):
                     scrape_count += 1
 
             page += 1
-            # time.sleep(crawl_delay)  # crawl_delay
+            time.sleep(crawl_delay)  # crawl_delay
 
         except Exception as error:
             print(error)  # TODO: send mail to admin
