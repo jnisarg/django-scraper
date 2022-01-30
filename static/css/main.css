@@ -43,17 +43,33 @@ body {
   letter-spacing: 0.2em;
 }
 
-.form-control {
+.form-control,
+.form-select {
   height: 43px;
 }
 
-.form-control:active, .form-control:focus {
+.form-control:active, .form-control:focus,
+.form-select:active,
+.form-select:focus {
   border-color: #6f42c1;
 }
 
-.form-control:hover, .form-control:active, .form-control:focus {
+.form-control:hover, .form-control:active, .form-control:focus,
+.form-select:hover,
+.form-select:active,
+.form-select:focus {
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
+}
+
+.pagination .page-item .current-page {
+  width: 100%;
+  background-color: #6f42c1 !important;
+  color: #fff;
+}
+
+.pagination .page-item .page-link {
+  border: none;
 }
 
 .pagination .page-item .page-link:active, .pagination .page-item .page-link:focus {

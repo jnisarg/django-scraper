@@ -1,10 +1,9 @@
 from django.urls import path
 
-from .views import NewsListView
+from .views import news_list_view
 
 
 app_name = "core"
 urlpatterns = [
-    # path('', scrape_page),
-    path("", NewsListView.as_view(), name="news_list"),
+    path("", news_list_view, name="news_list"),
 ]
