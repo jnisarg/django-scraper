@@ -50,7 +50,9 @@ MANIFEST
 *.spec
 
 # dev requirements
+.vscode
 requirements-dev.txt
+dev_sass
 
 # Installer logs
 pip-log.txt
