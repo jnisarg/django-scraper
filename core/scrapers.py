@@ -19,7 +19,7 @@ def get_driver():
     options.add_argument("- incognito")
     options.add_argument("--disable-extensions")
     options.add_argument("--disable-gpu")
-    # options.add_argument("--headless")
+    options.add_argument("--headless")
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
     driver = webdriver.Chrome(
@@ -52,6 +52,7 @@ def scrape_dev_to(url):
         print("Timed out waiting for page to load")
         driver.quit()
 
+    scrape_count = 0
     try:
         print("Started scraping...")
         load_infinite_scroll(driver)
@@ -70,18 +71,25 @@ def scrape_dev_to(url):
             today = datetime.date.today()
             yesterday = today - datetime.timedelta(days=1)
 
-            article_date = datetime.datetime.strptime(
+            article_publish_date = datetime.datetime.strptime(
                 " ".join(time.split()[:2]), "%b %d")
-            article_date = article_date.replace(year=today.year).date()
+            article_publish_date = article_publish_date.replace(
+                year=today.year).date()
 
-            if yesterday <= article_date:
-                NewsItem.objects.get_or_create(
+            if yesterday <= article_publish_date:
+                _, created = NewsItem.objects.get_or_create(
                     source="dev.to",
                     author=article_author,
                     link=article_link,
                     title=article_title,
-                    publish_date=article_date,
+                    publish_date=article_publish_date,
                 )
+
+                if created:
+                    scrape_count += 1
+
+        print(f"{scrape_count} new articles scraped.")
+
     except Exception as error:
         print(error)  # TODO: send mail to admin
 
