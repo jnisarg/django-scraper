@@ -128,7 +128,11 @@ def scrape_hn(crawl_delay=30):
                     article_author = author[0].text
                     article_publish_date = datetime.datetime.strptime(
                         dt[0].get("title"), "%Y-%m-%dT%H:%M:%S").date()
-                    article_source = source[0].text if source else "news.ycombinator.com"
+                    if source:
+                        article_source = source[0].text
+                    else:
+                        article_source = "news.ycombinator.com/"
+                        article_link = article_source + article_link
                 else:
                     continue
 
