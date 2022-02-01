@@ -131,8 +131,8 @@ def scrape_hn(crawl_delay=30):
                     if source:
                         article_source = source[0].text
                     else:
-                        article_source = "news.ycombinator.com/"
-                        article_link = article_source + article_link
+                        article_source = "news.ycombinator.com"
+                        article_link = f"https://{article_source}/{article_link}"
                 else:
                     continue
 
