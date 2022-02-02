@@ -10,8 +10,8 @@ class Command(BaseCommand):
         try:
             admin = User.objects.get(username="admin")
             if admin.is_superuser:
-                admin.set_password("admin")
-                admin.save()
+                # admin.set_password("admin")
+                # admin.save()
                 self.stdout.write("Superuser found...")
             else:
                 admin.delete()
