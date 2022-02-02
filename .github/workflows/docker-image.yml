@@ -10,15 +10,15 @@ jobs:
 
     env: 
       DEBUG: False
-      SECRET_KEY: ${{ SECRET_KEY }}
-      POSTGRES_DB: ${{ DB_NAME }}
-      POSTGRES_USER: ${{ DB_USER }}
-      POSTGRES_PASSWORD: ${{ DB_PASSWORD }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      POSTGRES_DB: ${{ secrets.DB_NAME }}
+      POSTGRES_USER: ${{ secrets.DB_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_HOST: db
-      DB_NAME: ${{ DB_NAME }}
-      DB_USER: ${{ DB_USER }}
-      DB_PASS: ${{ DB_PASSWORD }}
-      CELERY_BROKER_URL: ${{ CELERY_URL }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASS: ${{ secrets.DB_PASSWORD }}
+      CELERY_BROKER_URL: ${{ secrets.CELERY_URL }}
 
     runs-on: ubuntu-latest
 
