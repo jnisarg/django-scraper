@@ -8,25 +8,26 @@ jobs:
 
   build:
 
-    env: 
-      DEBUG: False
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      POSTGRES_DB: ${{ secrets.DB_NAME }}
-      POSTGRES_USER: ${{ secrets.DB_USER }}
-      POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      DB_HOST: db
-      DB_NAME: ${{ secrets.DB_NAME }}
-      DB_USER: ${{ secrets.DB_USER }}
-      DB_PASS: ${{ secrets.DB_PASSWORD }}
-      CELERY_BROKER_URL: ${{ secrets.CELERY_URL }}
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
+    - name: Make envfile
+      with:
+        env: 
+        DEBUG: False
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        POSTGRES_DB: ${{ secrets.DB_NAME }}
+        POSTGRES_USER: ${{ secrets.DB_USER }}
+        POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        DB_HOST: db
+        DB_NAME: ${{ secrets.DB_NAME }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASS: ${{ secrets.DB_PASSWORD }}
+        CELERY_BROKER_URL: ${{ secrets.CELERY_URL }}
     - name: Build the Docker image
       run: docker-compose up --build
-    - name: pass security checks
+    - name: Pass security checks
       run: docker-compose run --rm app sh -c "python manage.py check --deploy --fail-level=ERROR
-    - name: perform test
+    - name: Perform test
       run: docker-compose run --rm app sh -c "python manage.py test"
