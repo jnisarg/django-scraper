@@ -26,9 +26,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker-compose --file=docker-compose-gh.yml build
-    - name: Run docker image
-      run: docker-compose --file=docker-compose-gh.yml up
     - name: Pass security checks
-      run: docker-compose --file=docker-compose-gh.yml run --rm app sh -c "python manage.py check --deploy --fail-level=ERROR"
+      run: docker-compose run --rm app sh -c "python manage.py check --deploy --fail-level=ERROR"
     - name: Perform tests
-      run: docker-compose --file=docker-compose-gh.yml run --rm app sh -c "python manage.py test"
+      run: docker-compose run --rm app sh -c "python manage.py test"
