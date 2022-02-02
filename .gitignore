@@ -53,6 +53,7 @@ MANIFEST
 .vscode
 requirements-dev.txt
 dev_sass
+static_root
 
 # Installer logs
 pip-log.txt
